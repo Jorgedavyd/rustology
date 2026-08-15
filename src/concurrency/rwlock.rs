@@ -1,3 +1,5 @@
+use std::sync::atomic::AtomicUsize;
+
 pub struct RwLock<T> {
     data: *const T,
     rfc: AtomicUsize,
@@ -5,18 +7,17 @@ pub struct RwLock<T> {
 
 impl<T> RwLock<T> {
     pub fn new(data: T) -> Self {
-        let heap_pointer = Box::new(data);
         Self {
-            data: Box::into_raw(heap_pointer),
-            rfc: 0,
+            data: Box::into_raw(Box::new(data)),
+            rfc: AtomicUsize::new(0),
         }
     }
 
     pub fn read(&self) -> &T {
-        unimplemented!();
+        unimplemented!()
     }
 
     pub fn read_mut(&mut self) -> &mut T {
-        unimplemented!();
+        unimplemented!()
     }
 }

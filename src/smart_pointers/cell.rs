@@ -3,7 +3,7 @@
 // 1. unabling inmutable referencing of the inner type
 // 2. providing get, get_mut, and take methods to enforce borrowing rules.
 // 3. Create a !Send implementation to not allow mutability of the same
-// object with two different
+// object across threads
 
 // Quick notes
 // You probably want to use Cell with a cheap T so that accessing the value
