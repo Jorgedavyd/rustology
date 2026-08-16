@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/rustology
 
     steps:
       - name: Checkout code
@@ -33,7 +36,7 @@ jobs:
       - name: Cache cargo build
         uses: actions/cache@v3
         with:
-          path: target
+          path: projects/rustology/target
           key: ${{ runner.os }}-cargo-build-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-build-
@@ -49,4 +52,3 @@ jobs:
 
       - name: Check code formatting (rustfmt)
         run: cargo fmt -- --check
-

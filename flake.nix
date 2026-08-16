@@ -28,14 +28,16 @@
                     cargo = rustToolchain;
                     rustc = rustToolchain;
                 }).buildPackage {
-                    src = ./.;
+                    src = self + "/projects/rustology";
                     buildInputs = [ pkgs.glib ];
                 };
 
                 devShells.default = pkgs.mkShell {
                     buildInputs = [ rustToolchain ];
+                    shellHook = ''
+                        export PATH="$PATH:$HOME/.cargo/bin"
+                    '';
                 };
             }
         );
 }
-
